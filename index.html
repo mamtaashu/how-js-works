@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>throwdice</title>
+    <style>
+        #container{
+            /* border: 1px solid green; */
+            height:10vw;
+            display: flex;
+            justify-content: space-between;
+            width:20vw;
+            margin: auto;
+            margin-top: 1vw;;
+
+        }
+   #member1{
+       height:20%;
+       width:15%;
+       text-align: center;
+       border: 1px solid black;
+   }
+   #member2{
+       height:20%;
+       width:15%;
+       text-align: center;
+       border: 1px solid black;
+   }
+   #member3{
+       height:20%;
+       width:15%;
+       text-align: center;
+       border: 1px solid black;
+   }
+  
+  
+  
+   #roll{
+       margin-left:40vw;
+   }
+    #winner{
+        height:2vw;
+       width:4vw;
+       text-align: center;
+       border: 1px solid black;
+       margin-left:45vw;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div id="winner">
+        
+    </div>
+    <div id="container">
+    <span id="member1"></span>
+    <span id="member2"></span>
+    <span id="member3"></span>
+    
+    
+</div>
+<button id="roll">DICE ROLL</button>
+
+</body>
+<script>
+    
+    let one=document.querySelector("#member1")
+      let two=document.querySelector("#member2")
+      let three=document.querySelector("#member3")
+  document.querySelector("#roll").addEventListener("click",function(){
+    let result=  randomNumber();
+       one.innerHTML=result;
+
+       let result1=  randomNumber();
+       two.innerHTML=result1;
+    
+       let result2=  randomNumber();
+       three.innerHTML=result2;
+  
+       if(result>result1 && result>result2 )
+       
+       {
+          document.querySelector("#member1").style.backgroundColor="green";
+          document.querySelector("#winner").innerText=result;
+       }else if(result1>result && result1>result2){
+        document.querySelector("#member2").style.backgroundColor="green";
+        document.querySelector("#winner").innerText=result1;
+       }
+       else if(result2>result && result2>result1){
+        document.querySelector("#member3").style.backgroundColor="green";
+        document.querySelector("#winner").innerText=result2;
+       }
+
+       if(result<result1 && result<result2 )
+       
+       {
+          document.querySelector("#member1").style.backgroundColor="red";
+       
+       }else if(result1<result && result1<result2){
+        document.querySelector("#member2").style.backgroundColor="red";
+       }
+       else if(result2<result && result2<result1){
+        document.querySelector("#member3").style.backgroundColor="red";
+       
+       }
+
+     let min=Math.min(result,result1,result2);
+     let max=Math.max(result,result1,result2);
+     if(result!=min && result!=max)
+     {
+        document.querySelector("#member1").style.backgroundColor="yellow";
+     }else if(result1!=min && result1!=max)
+     {
+        document.querySelector("#member2").style.backgroundColor="yellow";
+     }else if(result2!=min && result2!=max)
+     {
+        document.querySelector("#member3").style.backgroundColor="yellow";
+       
+     }
+
+     if(result==result1 && result1==result2)
+     {
+        document.querySelector("#member1").style.backgroundColor="blue";
+        document.querySelector("#member2").style.backgroundColor="blue";
+        document.querySelector("#member3").style.backgroundColor="blue";
+        document.querySelector("#winner").innerText=result;
+
+     }else if(result1==result && result!=result2)
+     {
+        document.querySelector("#member1").style.backgroundColor="blue";
+        document.querySelector("#member2").style.backgroundColor="blue";
+        document.querySelector("#winner").innerText=result;
+
+     }else if(result2==result1 && result1!=result)
+     {
+        document.querySelector("#member2").style.backgroundColor="blue";
+        document.querySelector("#member3").style.backgroundColor="blue";
+        document.querySelector("#winner").innerText=result2;
+     }
+     else if(result==result2 && result!=result1)
+     {
+        document.querySelector("#member1").style.backgroundColor="blue";
+        document.querySelector("#member3").style.backgroundColor="blue";
+        document.querySelector("#winner").innerText=result;
+     }
+      
+    
+        })
+ let min=1;
+  let max=7;
+  function randomNumber()
+  {
+      let random= Math.floor(Math.random()*(max-min)+min);
+      return random;
+
+  }
+
+</script>
+</html>
